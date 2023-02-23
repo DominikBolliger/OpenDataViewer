@@ -1,9 +1,7 @@
-.info-button {
+.info-area {
     -fx-background-color: #DFEFCA;
-    -fx-border-radius: 15px;
-    -fx-padding: 5px;
-    -fx-border-insets: 5px;
-    -fx-background-insets: 5px;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-min-height: 150px;
     -fx-min-width: 250px;
 }
@@ -18,4 +16,9 @@ infor-button-label {
 
 .field-label {
 
+}
+
+.info-label{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
 }
