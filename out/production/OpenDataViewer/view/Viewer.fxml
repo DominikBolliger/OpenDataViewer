@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root-container" stylesheets="@../resource/css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="field-label" text="Label" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Label>
+            <ComboBox />
+            <Label styleClass="field-label" text="Label" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Label>
+            <ComboBox />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="field-label" text="Label" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Label>
+            <DatePicker stylesheets="@../resource/css/style.css" />
+            <Label styleClass="field-label" text="Label" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Label>
+            <DatePicker />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" styleClass="info-button" />
+            <Button mnemonicParsing="false" styleClass="info-button" />
+            <Button layoutX="62.0" layoutY="10.0" mnemonicParsing="false" styleClass="info-button" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" styleClass="info-button" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="info-button" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="info-button" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

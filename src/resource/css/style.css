@@ -1,0 +1,21 @@
+.info-area {
+    -fx-background-color: #DFEFCA;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-min-height: 150px;
+    -fx-min-width: 250px;
+}
+
+infor-button-label {
+
+}
+
+.root-container {
+    -fx-background-color: #CCDDD3;
+}
+
+.field-label {
+
+}
