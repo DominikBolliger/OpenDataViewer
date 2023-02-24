@@ -2,7 +2,10 @@ package logic;
 
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import modell.Info;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -181,4 +184,45 @@ public class DBConnection {
         return betriebstagIDList;
     }
 
+    private String getBetriebstag(int id){
+        String ret = "";
+        try {
+            String sql = "Select `betriebstag` from `opendata`.`betriebstag` where `betriebstag_ID` = ?";
+            PreparedStatement prepareStatement = con.prepareStatement(sql);
+            prepareStatement.setInt(1, id);
+            ResultSet rs = prepareStatement.executeQuery();
+            if (rs.next()) {
+                ret = rs.getString("betriebstag");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ret;
+    }
+
+    public ObservableList getTableViewInfoData(String stationName, String lineText, LocalDate start, LocalDate end) {
+        ObservableList<Info> data = FXCollections.observableArrayList();
+        int amount = 0;
+        List<Integer> betriebstagIDLIst = getBetriebstagID(start, end);
+        this.connect();
+        int stationId = getStationIdByStationName(stationName);
+        for (int i = 0; i < betriebstagIDLIst.size(); i++) {
+            try {
+                String sql = "Select ankunftsZeit, abfahrtszeit, ankunftsverspatung from `opendata`.`fahrt` where haltestelle_id_fk = ? and linien_text = ? and betreibstag_nr_fk = ?";
+                PreparedStatement prepareStatement = con.prepareStatement(sql);
+                prepareStatement.setInt(1, stationId);
+                prepareStatement.setString(2, lineText);
+                prepareStatement.setInt(3, betriebstagIDLIst.get(i));
+                ResultSet rs = prepareStatement.executeQuery();
+                while (rs.next()) {
+                    data.add(new Info(lineText, rs.getString("ankunftsZeit"), rs.getString("abfahrtszeit"), getBetriebstag(betriebstagIDLIst.get(i)), rs.getString("ankunftsverspatung")));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        this.close();
+        return data;
+    }
 }
