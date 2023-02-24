@@ -55,5 +55,7 @@ public class ViewerController {
 
     public void btnShowClick() {
         lblAmountOfTrains.setText(String.valueOf(con.getTrainAmount(cbStation.getSelectionModel().getSelectedItem().toString(), cbLine.getSelectionModel().getSelectedItem().toString(), dpStart.getValue(), dpEnd.getValue())));
+        lblDelayedTrainsArrival.setText(String.valueOf(con.getDelayedTrainsAmount(cbStation.getSelectionModel().getSelectedItem().toString(), cbLine.getSelectionModel().getSelectedItem().toString(), dpStart.getValue(), dpEnd.getValue())));
+        lblFailure.setText(String.valueOf(con.getFailureTrains(cbStation.getSelectionModel().getSelectedItem().toString(), cbLine.getSelectionModel().getSelectedItem().toString(), dpStart.getValue(), dpEnd.getValue())));
     }
 }

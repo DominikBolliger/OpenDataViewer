@@ -88,9 +88,49 @@ public class DBConnection {
         return lineTexts;
     }
 
-    public int getDelayedTrainsAmount(){
+    public int getDelayedTrainsAmount(String stationName, String lineText, LocalDate start, LocalDate end){
         int amount = 0;
+        List<Integer> betriebstagIDLIst = getBetriebstagID(start, end);
+        this.connect();
+        int stationId = getStationIdByStationName(stationName);
+        for (int i = 0; i < betriebstagIDLIst.size(); i++) {
+            try {
+                String sql = "SELECT count(*) FROM opendata.fahrt where ankunftsverspatung = 1 and haltestelle_id_fk = ? and linien_text = ?";
+                PreparedStatement prepareStatement = con.prepareStatement(sql);
+                prepareStatement.setInt(1, stationId);
+                prepareStatement.setString(2, lineText);
+                ResultSet rs = prepareStatement.executeQuery();
+                if (rs.next()) {
+                    amount += rs.getInt("count(*)");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        this.close();
+        return amount;
+    }
 
+    public int getFailureTrains(String stationName, String lineText, LocalDate start, LocalDate end){
+        int amount = 0;
+        List<Integer> betriebstagIDLIst = getBetriebstagID(start, end);
+        this.connect();
+        int stationId = getStationIdByStationName(stationName);
+        for (int i = 0; i < betriebstagIDLIst.size(); i++) {
+            try {
+                String sql = "SELECT count(*) FROM opendata.fahrt where faellt_aus_tf = 1 and haltestelle_id_fk = ? and linien_text = ?";
+                PreparedStatement prepareStatement = con.prepareStatement(sql);
+                prepareStatement.setInt(1, stationId);
+                prepareStatement.setString(2, lineText);
+                ResultSet rs = prepareStatement.executeQuery();
+                if (rs.next()) {
+                    amount += rs.getInt("count(*)");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        this.close();
         return amount;
     }
 
