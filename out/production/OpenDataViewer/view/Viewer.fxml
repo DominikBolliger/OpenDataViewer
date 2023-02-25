@@ -106,7 +106,7 @@
                <children>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="info-label" text="Failures">
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="info-label" text="Cancelled">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin></Label>
@@ -119,7 +119,7 @@
                </children></HBox>
          </children>
       </HBox>
-      <TableView fx:id="tvInfo" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tvInfo" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="5.0" />
          </VBox.margin>
@@ -128,7 +128,7 @@
             <TableColumn fx:id="colDay" prefWidth="144.0" text="Day" />
             <TableColumn fx:id="colArrival" prefWidth="144.0" text="Arrival Time" />
             <TableColumn fx:id="colDeparture" prefWidth="160.0" text="Departure Time" />
-            <TableColumn fx:id="colLate" prefWidth="160.0" text="Delay" />
+            <TableColumn fx:id="colLate" prefWidth="160.0" text="Arriving Delay" />
          </columns>
       </TableView>
    </children>

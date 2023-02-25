@@ -26,3 +26,7 @@
 #tvInfo .table-column {
     -fx-alignment: CENTER;
 }
+
+.table-view{
+    -fx-background-color: #DFEFCA;
+}

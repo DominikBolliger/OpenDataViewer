@@ -98,13 +98,14 @@ public class DBConnection {
         int stationId = getStationIdByStationName(stationName);
         for (int i = 0; i < betriebstagIDLIst.size(); i++) {
             try {
-                String sql = "SELECT count(*) FROM opendata.fahrt where ankunftsverspatung = 1 and haltestelle_id_fk = ? and linien_text = ?";
+                String sql = "SELECT count(*) as count FROM opendata.fahrt where ankunftsverspatung = '1' and haltestelle_id_fk = ? and linien_text = ? and betreibstag_nr_fk = ?";
                 PreparedStatement prepareStatement = con.prepareStatement(sql);
                 prepareStatement.setInt(1, stationId);
                 prepareStatement.setString(2, lineText);
+                prepareStatement.setInt(3, betriebstagIDLIst.get(i));
                 ResultSet rs = prepareStatement.executeQuery();
                 if (rs.next()) {
-                    amount += rs.getInt("count(*)");
+                    amount += rs.getInt("count");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -62,8 +62,8 @@ public class ViewerController{
         colArrival.setCellValueFactory(new PropertyValueFactory<Info, String>("arrivalTime"));
         colDeparture.setCellValueFactory(new PropertyValueFactory<Info, String>("departureTime"));
         colLate.setCellValueFactory(new PropertyValueFactory<Info, String>("late"));
-        dpStart.setValue(LocalDate.now().minusDays(3));
-        dpEnd.setValue(LocalDate.now().minusDays(3));
+        dpStart.setValue(LocalDate.now().minusDays(2));
+        dpEnd.setValue(LocalDate.now().minusDays(2));
     }
 
     private List<String> getStations() {
