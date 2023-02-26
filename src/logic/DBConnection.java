@@ -122,10 +122,11 @@ public class DBConnection {
         int stationId = getStationIdByStationName(stationName);
         for (int i = 0; i < betriebstagIDLIst.size(); i++) {
             try {
-                String sql = "SELECT count(*) FROM opendata.fahrt where faellt_aus_tf = 1 and haltestelle_id_fk = ? and linien_text = ?";
+                String sql = "SELECT count(*) FROM opendata.fahrt where faellt_aus_tf = 1 and haltestelle_id_fk = ? and linien_text = ? and betreibstag_nr_fk = ? ";
                 PreparedStatement prepareStatement = con.prepareStatement(sql);
                 prepareStatement.setInt(1, stationId);
                 prepareStatement.setString(2, lineText);
+                prepareStatement.setInt(3, betriebstagIDLIst.get(i));
                 ResultSet rs = prepareStatement.executeQuery();
                 if (rs.next()) {
                     amount += rs.getInt("count(*)");
@@ -209,14 +210,14 @@ public class DBConnection {
         int stationId = getStationIdByStationName(stationName);
         for (int i = 0; i < betriebstagIDLIst.size(); i++) {
             try {
-                String sql = "Select ankunftsZeit, abfahrtszeit, ankunftsverspatung from `opendata`.`fahrt` where haltestelle_id_fk = ? and linien_text = ? and betreibstag_nr_fk = ?";
+                String sql = "Select ankunftsZeit, abfahrtszeit, ankunftsverspatung, faellt_aus_tf from `opendata`.`fahrt` where haltestelle_id_fk = ? and linien_text = ? and betreibstag_nr_fk = ?";
                 PreparedStatement prepareStatement = con.prepareStatement(sql);
                 prepareStatement.setInt(1, stationId);
                 prepareStatement.setString(2, lineText);
                 prepareStatement.setInt(3, betriebstagIDLIst.get(i));
                 ResultSet rs = prepareStatement.executeQuery();
                 while (rs.next()) {
-                    data.add(new Info(lineText, rs.getString("ankunftsZeit"), rs.getString("abfahrtszeit"), getBetriebstag(betriebstagIDLIst.get(i)), rs.getString("ankunftsverspatung")));
+                    data.add(new Info(lineText, rs.getString("ankunftsZeit"), rs.getString("abfahrtszeit"), getBetriebstag(betriebstagIDLIst.get(i)), rs.getString("ankunftsverspatung"), rs.getString("faellt_aus_tf")));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -49,6 +49,8 @@ public class ViewerController{
     TableColumn<Info, String> colDeparture;
     @FXML
     TableColumn<Info, String> colLate;
+    @FXML
+    TableColumn<Info, String> colCanceled;
 
     @FXML
     public void initialize(){
@@ -62,6 +64,7 @@ public class ViewerController{
         colArrival.setCellValueFactory(new PropertyValueFactory<Info, String>("arrivalTime"));
         colDeparture.setCellValueFactory(new PropertyValueFactory<Info, String>("departureTime"));
         colLate.setCellValueFactory(new PropertyValueFactory<Info, String>("late"));
+        colCanceled.setCellValueFactory(new PropertyValueFactory<Info, String>("canceled"));
         dpStart.setValue(LocalDate.now().minusDays(2));
         dpEnd.setValue(LocalDate.now().minusDays(2));
     }

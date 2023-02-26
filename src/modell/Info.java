@@ -6,8 +6,9 @@ public class Info {
     private String departureTime;
     private String day;
     private String late;
+    private String canceled;
 
-    public Info(String lineText, String arrivalTime, String departureTime, String day, String late) {
+    public Info(String lineText, String arrivalTime, String departureTime, String day, String late, String canceled) {
         this.lineText = lineText;
 
         if (arrivalTime != null) {
@@ -26,6 +27,11 @@ public class Info {
             this.late = "No";
         } else {
             this.late = "Yes";
+        }
+        if (canceled.equals("0")){
+            this.canceled = "No";
+        } else {
+            this.canceled = "Yes";
         }
 
     }
@@ -48,5 +54,9 @@ public class Info {
 
     public String getLate() {
         return late;
+    }
+
+    public String getCanceled() {
+        return canceled;
     }
 }

@@ -128,7 +128,8 @@
             <TableColumn fx:id="colDay" prefWidth="144.0" text="Day" />
             <TableColumn fx:id="colArrival" prefWidth="144.0" text="Arrival Time" />
             <TableColumn fx:id="colDeparture" prefWidth="160.0" text="Departure Time" />
-            <TableColumn fx:id="colLate" prefWidth="160.0" text="Arriving Delay" />
+            <TableColumn fx:id="colLate" prefWidth="109.0" text="Arriving Delay" />
+            <TableColumn fx:id="colCanceled" prefWidth="99.0" text="Canceled" />
          </columns>
       </TableView>
    </children>
